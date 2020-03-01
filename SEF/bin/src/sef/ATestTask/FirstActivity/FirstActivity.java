@@ -1,26 +1,28 @@
 package sef.ATestTask.FirstActivity;
 
+import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 
 public class FirstActivity extends Employee {
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
 
         //TODO 1 Create collection of employee (more than 5) list or map
         //		System.out.println() result
 
         Employee e1 = new Employee("jack", "black", 22, 77, "bum", "ficcomp", 99);
-        Employee e2 = new Employee("jack1", "black1", 42, 88, "bum1", "ficcomp", 9);
-        Employee e3 = new Employee("jack2", "black2", 88, 11, "bum2", "ficcomp", 999);
-        Employee e4 = new Employee("jack3", "black3", 66, 2, "bum3", "ficcomp", 9999);
-        Employee e5 = new Employee("jack4", "black4", 46, 33, "bum4", "ficcomp", 99999);
-        Employee e6 = new Employee("jack5", "black5", 25, 4, "bum5", "ficcomp", 99777);
-        Employee etemp = new Employee();
-        List<Employee> employees = new ArrayList<>();
+        Employee e2 = new Employee("dan", "white", 42, 88, "bum1", "ficcomp", 9);
+        Employee e3 = new Employee("fin", "yellow", 88, 11, "bum2", "ficcomp", 999);
+        Employee e4 = new Employee("shrek", "green", 66, 2, "bum3", "ficcomp", 9999);
+        Employee e5 = new Employee("john", "red", 46, 33, "bum4", "ficcomp", 99999);
+        Employee e6 = new Employee("eve", "purple", 25, 4, "bum5", "ficcomp", 99777);
+        //Employee etemp = new Employee();
+        ArrayList<Employee> employees = new ArrayList<>();
         employees.add(e1);
         employees.add(e2);
         employees.add(e3);
@@ -33,8 +35,8 @@ public class FirstActivity extends Employee {
         //TODO 2 sort and this employees by salary (from min to max)
         // TIP - google bubble sort
         //		System.out.println() result
-
-
+        System.out.println(" ");
+        System.out.println("Sorted by salary");
         Comparator<Employee> EmpSalary = new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -54,10 +56,20 @@ public class FirstActivity extends Employee {
         // than ask him introduce()
         // than make them Student
         // than ask him introduce()
+        System.out.println(" ");
+        System.out.println("Student introduction");
 
         Student s = new Student();
-        s.setFirstName("john");
-        s.setSecondName("connor");
+        try {
+            s.setFirstName("john");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
+        try {
+            s.setSecondName("connor");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         s.setAge(20);
         s.setSchoolName("ficschool");
         Person tempPerson = s;
@@ -65,68 +77,60 @@ public class FirstActivity extends Employee {
         Student tempStudent = (Student) tempPerson;
         tempStudent.introduce();
 
+
         //TODO 4 Create method for full change of employee information
         // for example some employee change his work
-
-
-
-       /* Employee[] empl = new Employee[6];
-        empl[0] = new Employee();
-        empl[0].setSalary(999);
-        empl[0].setEmpId(1);
-        empl[1] = new Employee();
-        empl[1].setSalary(9);
-		empl[1].setEmpId(2);
-        empl[2] = new Employee();
-        empl[2].setSalary(9999);
-		empl[2].setEmpId(3);
-        empl[3] = new Employee();
-        empl[3].setSalary(99999999);
-		empl[3].setEmpId(4);
-        empl[4] = new Employee();
-        empl[4].setSalary(99999);
-		empl[4].setEmpId(5);
-        empl[5] = new Employee();
-        empl[5].setSalary(9999999);
-		empl[5].setEmpId(6);
-
-        for (int i = 0; i <= 5; i++) {
-
-            System.out.println("Employee nr " + empl[i].empId + " salary " + empl[i].salary);
-        } */
-
-
-
-        /*int n = 6;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (empl[j].salary < empl[j + 1].salary) {
-                    double temp = empl[j].salary;
-                    empl[j].salary = empl[j + 1].salary;
-                    empl[j + 1].salary = temp;
-                    int temp1= empl[j].empId;
-					empl[j].empId = empl[j + 1].empId;
-					empl[j + 1].empId = temp1;
-
-                }
-        System.out.println("Employes from top salary to less");
-        for (int i = 0; i <= 5; i++) {
-
-            System.out.println("Employee nr " + empl[i].empId + " salary " + empl[i].salary);
+        System.out.println(" ");
+        System.out.println("Edited employee");
+        employees.get(1).setCompanyName("newcompany");
+        employees.get(1).setEmpId(777);
+        employees.get(1).setJobTitle("newjobtitle");
+        employees.get(1).setSalary(44444);
+        for (Employee employee : employees) {
+            System.out.println(employee.getFirstName() + " " + employee.getSecondName() + " " + employee.getAge() + " " + employee.getEmpId() + " " + employee.getJobTitle() + " " + employee.getCompanyName() + " " + employee.getSalary());
         }
-*/
-/*int n = 6;
-		for (int i = 0; i < n - 1; i++)
-			for (int j = 0; j < n - i - 1; j++)
-				if (e[j].salary < e[j + 1].salary) {
-					temp = e[j];
-					e[j] = e[j + 1];
-					e[j + 1] = temp;
+        //write to file
+        File file = new File("./Storage.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+        for (Employee employee : employees) {
+            bw.write(employee.getFirstName() + " " + employee.getSecondName() + " " + employee.getAge() + " " + employee.getEmpId() + " " + employee.getJobTitle() + " " + employee.getCompanyName() + " " + employee.getSalary());
+            bw.newLine();
+        }
+        bw.flush();
+        bw.close();
 
-				} */
+        // sort by first name
+        System.out.println(" ");
+        System.out.println("Sorted by first name");
+        Comparator<Employee> FirstName = new Comparator<Employee>() {
+            @Override
+            public int compare(Employee jc1, Employee jc2) {
+                return (int) (jc1.getFirstName().compareTo(jc2.getFirstName()));
+            }
+        };
 
+        Collections.sort(employees, FirstName);
+        for (Employee employee : employees) {
+            System.out.println(employee.getFirstName() + " " + employee.getSecondName() + " " + employee.getAge() + " " + employee.getEmpId() + " " + employee.getJobTitle() + " " + employee.getCompanyName() + " " + employee.getSalary());
+        }
+        // sort by second name
+        System.out.println(" ");
+        System.out.println("Sorted by second name");
+        Comparator<Employee> SecondName = new Comparator<Employee>() {
+            @Override
+            public int compare(Employee jc1, Employee jc2) {
+                return (int) (jc1.getSecondName().compareTo(jc2.getSecondName()));
+            }
+        };
+
+        Collections.sort(employees, SecondName);
+        for (Employee employee : employees) {
+            System.out.println(employee.getFirstName() + " " + employee.getSecondName() + " " + employee.getAge() + " " + employee.getEmpId() + " " + employee.getJobTitle() + " " + employee.getCompanyName() + " " + employee.getSalary());
+        }
 
     }
-
-
 }

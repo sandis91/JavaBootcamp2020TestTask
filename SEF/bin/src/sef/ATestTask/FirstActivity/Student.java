@@ -26,8 +26,16 @@ public class Student extends Person{
     }
     public static void main(String[] args){
         Student s=new Student();Person p = new Person();
-        p.setFirstName("Sandis");
-        p.setSecondName("Arbidans");
+        try {
+            p.setFirstName("Sandis");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
+        try {
+            p.setSecondName("Arbidans");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         p.setAge(28);
         s.schoolName="fictional school name";
         s.introduce();

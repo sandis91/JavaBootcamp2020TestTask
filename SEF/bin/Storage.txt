@@ -1,0 +1,6 @@
+john red 46 33 bum4 ficcomp 99999.0
+eve purple 25 777 newjobtitle newcompany 44444.0
+shrek green 66 2 bum3 ficcomp 9999.0
+fin yellow 88 11 bum2 ficcomp 999.0
+jack black 22 77 bum ficcomp 99.0
+dan white 42 88 bum1 ficcomp 9.0

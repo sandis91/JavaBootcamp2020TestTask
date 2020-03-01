@@ -1,6 +1,7 @@
 package sef.ATestTask.FirstActivity;
 
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class Person {
@@ -69,7 +70,7 @@ public class Person {
         return Pattern.compile( "[0-9]" ).matcher( s ).find();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println(stringContainsNumber("ahasjakk5"));
         Person a = new Person();
         try {

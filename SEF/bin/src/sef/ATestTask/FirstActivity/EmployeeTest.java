@@ -6,7 +6,11 @@ public class EmployeeTest extends TestCase {
 
     public void checkEmployeeCreatedProperly(){
         Employee employee = new Employee();
-        employee.setFirstName("Test1");
+        try {
+            employee.setFirstName("Test1");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         assertEquals("I am an error message", "Test1", employee.getFirstName());
         employee.setEmpId(22);
         assertEquals("I am an error message", 22, employee.getEmpId());
@@ -16,7 +20,11 @@ public class EmployeeTest extends TestCase {
         assertEquals("I am an error message", "Test1", employee.getJobTitle());
         employee.setCompanyName("Test1");
         assertEquals("I am an error message", "Test1", employee.getCompanyName());
-        employee.setSecondName("Test1");
+        try {
+            employee.setSecondName("Test1");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         assertEquals("I am an error message", "Test1", employee.getSecondName());
     }
 

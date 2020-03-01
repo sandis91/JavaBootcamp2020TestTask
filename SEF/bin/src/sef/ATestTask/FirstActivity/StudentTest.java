@@ -7,9 +7,17 @@ public class StudentTest {
 
     public void checkStudentCreatedProperly() {
         Student s = new Student();
-        s.setFirstName("Test1");
+        try {
+            s.setFirstName("Test1");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         assertEquals("I am an error message", "Test1", s.getFirstName());
-        s.setSecondName("Test1");
+        try {
+            s.setSecondName("Test1");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         assertEquals("I am an error message", "Test1", s.getSecondName());
         s.setAge(111);
         assertEquals("I am an error message",111,s.getAge());

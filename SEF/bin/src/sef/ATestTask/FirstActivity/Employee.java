@@ -1,5 +1,7 @@
 package sef.ATestTask.FirstActivity;
 
+import java.io.IOException;
+
 public class Employee extends Person {
 
     public int empId;
@@ -62,14 +64,22 @@ public class Employee extends Person {
     //TODO 3 override method announce()
     public void announce() {
         Person p = new Person();
-        p.setFirstName("Sandis");
-        p.setSecondName("Arbidans");
+        try {
+            p.setFirstName("Sandis");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
+        try {
+            p.setSecondName("Arbidans");
+        } catch (CustomExceptionActivityy customExceptionActivityy) {
+            customExceptionActivityy.printStackTrace();
+        }
         p.setAge(28);
         System.out.println("My name is " + p.getFirstName() + " " + p.getSecondName() + " and i am " + p.getAge() + " I work as " + getJobTitle() + " in company " + getCompanyName());
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Employee ez = new Employee();
         ez.setCompanyName("fictionalcompany");
         ez.setEmpId(0);
